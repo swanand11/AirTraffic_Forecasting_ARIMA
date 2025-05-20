@@ -58,5 +58,5 @@ eda_air_traffic <- function(data) {
   
 }
 
-# Run the function
+
 eda_air_traffic(df)
