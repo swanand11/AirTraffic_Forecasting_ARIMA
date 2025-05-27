@@ -64,7 +64,7 @@ eda_air_traffic <- function(data) {
 eda_air_traffic(df)
 
 # Decomposition
-plot(decompose(ts_data))what 
+plot(decompose(ts_data))
 
 # Stationarity Check
 cat("\nADF Test for Stationarity:\n")
@@ -102,14 +102,16 @@ comparison_df <- data.frame(
   Predicted = as.numeric(yhat)
 )
 
+
 print(
-  ggplot(comparison_df, aes(x = Month)) +
-    geom_line(aes(y = Actual), color = "blue", size = 1) +
-    geom_line(aes(y = Predicted), color = "red", size = 1, linetype = "dashed") +
-    labs(title = "Actual vs Predicted Air Passengers (1959-1960)",
-         subtitle = "Blue = Actual, Red = Predicted",
-         x = "Date", y = "Number of Passengers") +
-    theme_minimal()
+ggplot(comparison_df, aes(x = Month)) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Predicted, color = "Predicted"), linetype = "dashed", size = 1) +
+  scale_color_manual(values = c("Actual" = "blue", "Predicted" = "red")) +
+  labs(title = "Actual vs Predicted Air Passengers (1959-1960)",
+       x = "Month", y = "Number of Passengers",
+       color = "Legend") +
+  theme_minimal()
 )
 
 # Accuracy
